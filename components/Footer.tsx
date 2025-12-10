@@ -28,9 +28,9 @@ export default function Footer() {
           <div className={styles.section}>
             <h4 className={styles.title}>연락처</h4>
             <ul className={styles.contact}>
-              <li>📧 contact@guromulsan.com</li>
-              <li>📞 02-1234-5678</li>
-              <li>📍 서울특별시 구로구</li>
+              <li>📧 <a href="mailto:gurodnt@guromulsan.co.kr">gurodnt@guromulsan.co.kr</a></li>
+              <li>📞 010-2684-4484</li>
+              <li>📍 서울특별시 강남구 개포로15길 3-4 1층 101호</li>
             </ul>
           </div>
         </div>

@@ -40,21 +40,23 @@ export default function Contact() {
               <div className={styles.infoIcon}>📧</div>
               <div>
                 <div className={styles.infoLabel}>이메일</div>
-                <div className={styles.infoValue}>contact@guromulsan.com</div>
+                <div className={styles.infoValue}>
+                  <a href="mailto:gurodnt@guromulsan.co.kr">gurodnt@guromulsan.co.kr</a>
+                </div>
               </div>
             </div>
             <div className={styles.infoItem}>
               <div className={styles.infoIcon}>📞</div>
               <div>
                 <div className={styles.infoLabel}>전화</div>
-                <div className={styles.infoValue}>02-1234-5678</div>
+                <div className={styles.infoValue}>010-2684-4484</div>
               </div>
             </div>
             <div className={styles.infoItem}>
               <div className={styles.infoIcon}>📍</div>
               <div>
                 <div className={styles.infoLabel}>주소</div>
-                <div className={styles.infoValue}>서울특별시 구로구</div>
+                <div className={styles.infoValue}>서울특별시 강남구 개포로15길 3-4 1층 101호</div>
               </div>
             </div>
           </div>

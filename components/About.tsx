@@ -31,8 +31,8 @@ export default function About() {
                 <div className={styles.statLabel}>완료 프로젝트</div>
               </div>
               <div className={styles.stat}>
-                <div className={styles.statNumber}>50+</div>
-                <div className={styles.statLabel}>만족 고객</div>
+                <div className={styles.statNumber}>100+</div>
+                <div className={styles.statLabel}>고객만족</div>
               </div>
             </div>
           </div>

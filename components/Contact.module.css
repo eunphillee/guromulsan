@@ -54,6 +54,17 @@
   color: var(--text-dark);
 }
 
+.infoValue a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.infoValue a:hover {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+
 .form {
   background: white;
   padding: 2.5rem;
