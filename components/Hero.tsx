@@ -92,7 +92,7 @@ export default function Hero() {
           return
         }
 
-        audio.volume = 0.3 // 음량 조절 (30%)
+        audio.volume = 0.2 // 음량 조절 (20%)
         await audio.play()
         console.log('배경 음악 재생 시작')
       } catch (error) {
