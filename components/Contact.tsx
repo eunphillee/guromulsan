@@ -10,6 +10,8 @@ export default function Contact() {
     phone: '',
     message: '',
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -18,12 +20,45 @@ export default function Contact() {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // 여기에 폼 제출 로직 추가
-    console.log('Form submitted:', formData)
-    alert('문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.')
-    setFormData({ name: '', email: '', phone: '', message: '' })
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      // Web3Forms를 사용한 자동 이메일 전송
+      const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || 'b2dbb3dc-3bf7-4c84-81ec-f3652390a50b'
+      
+      const formDataToSend = new FormData()
+      formDataToSend.append('access_key', accessKey)
+      formDataToSend.append('name', formData.name)
+      formDataToSend.append('email', formData.email)
+      formDataToSend.append('phone', formData.phone || '')
+      formDataToSend.append('message', `이름: ${formData.name}\n이메일: ${formData.email}\n전화번호: ${formData.phone || '없음'}\n\n문의내용:\n${formData.message}`)
+      formDataToSend.append('subject', `[구로물산] 문의하기 - ${formData.name}`)
+      formDataToSend.append('to', 'gurodnt@guromulsan.co.kr')
+      
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formDataToSend,
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setSubmitStatus('success')
+        alert('문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.')
+        setFormData({ name: '', email: '', phone: '', message: '' })
+      } else {
+        throw new Error(result.message || '이메일 전송에 실패했습니다.')
+      }
+    } catch (error) {
+      console.error('이메일 전송 실패:', error)
+      setSubmitStatus('error')
+      alert('문의 전송에 실패했습니다. 잠시 후 다시 시도해주세요.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -104,8 +139,8 @@ export default function Contact() {
                 required
               ></textarea>
             </div>
-            <button type="submit" className={styles.submitButton}>
-              문의하기
+            <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
+              {isSubmitting ? '전송 중...' : '문의하기'}
             </button>
           </form>
         </div>
