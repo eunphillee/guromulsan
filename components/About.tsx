@@ -37,9 +37,11 @@ export default function About() {
             </div>
           </div>
           <div className={styles.image}>
-            <div className={styles.imagePlaceholder}>
-              <span>회사 이미지</span>
-            </div>
+            <img 
+              src="/images/digital01.png" 
+              alt="구로물산 회사 이미지" 
+              className={styles.companyImage}
+            />
           </div>
         </div>
       </div>
