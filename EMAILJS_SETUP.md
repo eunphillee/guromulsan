@@ -49,3 +49,6 @@ NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 
 - EmailJS 무료 플랜: 월 200통 이메일 전송 가능
 - 설정 전에는 mailto: 링크 방식으로 작동합니다 (이메일 클라이언트가 자동으로 열림)
+
+
+

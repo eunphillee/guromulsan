@@ -30,3 +30,6 @@ npm run dev
 - Web3Forms는 무료로 월 250통까지 이메일 전송 가능
 - Access Key는 공개되어도 안전합니다 (rate limiting으로 보호됨)
 - 설정하지 않으면 이메일 전송이 작동하지 않습니다
+
+
+
