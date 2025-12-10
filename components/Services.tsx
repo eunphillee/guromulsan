@@ -27,9 +27,9 @@ const services = [
     icon: '🌐',
   },
   {
-    title: '펌웨어 개발',
-    description: '하드웨어 최적화된 펌웨어 설계 및 개발',
-    icon: '⚙️',
+    title: 'RFID 개발',
+    description: 'T-Money, RF Reader 등 RFID 기반 솔루션 개발',
+    icon: '📡',
   },
 ]
 
