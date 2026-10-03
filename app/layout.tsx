@@ -42,6 +42,9 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   icons: { icon: '/favicon.png' },
+  verification: {
+    google: 'x4SyJdrK7wfyv8nZdotPH-hPyLIca8M0B6FiDuiTE3Q',
+  },
 }
 
 const organizationJsonLd = {
