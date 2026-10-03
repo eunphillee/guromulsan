@@ -182,8 +182,7 @@ export default function Hero() {
         preload="auto"
         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
       >
-        <source src="/videos/AdobeStock_74111339.mov" type="video/quicktime" />
-        <source src="/videos/AdobeStock_74111339.mov" type="video/mp4" />
+        <source src="/videos/hero.mp4" type="video/mp4" />
         비디오를 재생할 수 없습니다.
       </video>
       <div className={styles.contentWrapper}>
