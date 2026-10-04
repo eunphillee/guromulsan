@@ -19,6 +19,7 @@ export default function Header() {
     { label: '홈', href: '#home' },
     { label: '회사소개', href: '#about' },
     { label: '서비스', href: '#services' },
+    { label: '제품', href: '#product' },
     { label: '기술스택', href: '#technologies' },
     { label: '문의하기', href: '#contact' },
   ]
