@@ -1,9 +1,23 @@
 import styles from './Product.module.css'
 
+function UsbAIcon() {
+  return (
+    <svg width="38" height="38" viewBox="0 0 48 48" aria-label="USB A타입 커넥터" role="img">
+      <rect x="21" y="38" width="6" height="9" rx="1" fill="#2b2b2b" />
+      <rect x="13" y="20" width="22" height="20" rx="4" fill="#2b2b2b" />
+      <path d="M21 31 l3-5 l3 5 M24 26 v8 M20.5 31.5 h2 M25.5 29.5 h2" stroke="#ffffff" strokeWidth="1.4" fill="none" strokeLinecap="round" />
+      <rect x="11" y="2" width="26" height="20" rx="1.5" fill="#d3d8df" stroke="#8a929e" strokeWidth="1.2" />
+      <rect x="16" y="7" width="5" height="5" rx="0.6" fill="#6b7380" />
+      <rect x="27" y="7" width="5" height="5" rx="0.6" fill="#6b7380" />
+      <rect x="11" y="16" width="26" height="2" fill="#aeb5bf" />
+    </svg>
+  )
+}
+
 const highlights = [
   { icon: '⚡', title: 'ARM Cortex-M4', text: '고성능 컨트롤러로 빠르고 안정적인 카드 인식' },
   { icon: '🔐', title: 'SAM 4슬롯', text: '결제·인증용 보안 모듈 탑재로 보안성과 확장성 확보' },
-  { icon: '🔌', title: '다양한 인터페이스', text: 'USB · RS232 · TTL · Wiegand로 POS·키오스크와 간편 연동' },
+  { icon: 'usb', title: '다양한 인터페이스', text: 'USB · RS232 · TTL · Wiegand로 POS·키오스크와 간편 연동' },
   { icon: '🛡️', title: 'IP54 방진방수', text: '-20℃ ~ 80℃ 환경에서도 동작하는 야외형 내구성' },
 ]
 
@@ -78,7 +92,7 @@ export default function Product() {
         <div className={styles.highlights}>
           {highlights.map((h) => (
             <div key={h.title} className={styles.highlight}>
-              <div className={styles.hIcon}>{h.icon}</div>
+              <div className={styles.hIcon}>{h.icon === 'usb' ? <UsbAIcon /> : h.icon}</div>
               <h4>{h.title}</h4>
               <p>{h.text}</p>
             </div>
