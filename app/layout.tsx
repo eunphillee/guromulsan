@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import './globals.css'
 
 const SITE_URL = 'https://www.guromulsan.co.kr'
+const GA_ID = 'G-09KGCP56RK'
 const TITLE = '구로물산 | RFID·NFC 리더기 맞춤 개발, 디지털 임베디드 전문'
 const DESCRIPTION =
   '구로물산은 RFID·NFC 카드리더기와 임베디드 시스템을 현장에 맞춰 커스터마이징 개발합니다. 버스정류장 BIS 잔액조회기에 적용된 GURO-100 비접촉식 스마트카드 리더기를 만나보세요.'
@@ -82,6 +84,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         {children}
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+        <Script id="ga4" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${GA_ID}');`}
+        </Script>
       </body>
     </html>
   )
