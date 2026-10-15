@@ -1,0 +1,41 @@
+.policy {
+  padding-top: 7rem;
+}
+
+.policy :global(.container) {
+  max-width: 820px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+  color: var(--text-dark);
+}
+
+.updated {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.policy h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 2rem 0 0.75rem;
+  color: var(--text-dark);
+}
+
+.policy ul {
+  padding-left: 1.2rem;
+  line-height: 1.9;
+  color: var(--text-dark);
+}
+
+.policy a {
+  color: var(--primary-color);
+}
+
+.back {
+  margin-top: 2.5rem;
+}
