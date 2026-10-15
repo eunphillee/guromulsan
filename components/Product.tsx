@@ -141,13 +141,6 @@ export default function Product() {
               리더기입니다. 국내 교통카드 잔액조회를 포함한 다양한 결제·인증 환경에 맞춰 설계되었으며,
               기존 POS, 키오스크, 무인단말기에 USB 케이블 하나로 손쉽게 연결할 수 있습니다.
             </p>
-            <div className={styles.caseBox}>
-              <strong>🚏 납품 사례</strong>
-              <p>
-                실제 버스정류장 BIS(버스정보시스템) 교통카드 잔액조회기에 적용되어, 야외 현장에서 안정성을
-                검증받았습니다. 현장 요구에 맞춘 RF 커스터마이징 개발도 가능합니다.
-              </p>
-            </div>
           </div>
         </div>
 
@@ -180,12 +173,6 @@ export default function Product() {
                 <li key={a}>{a}</li>
               ))}
             </ul>
-            <img
-              src="/images/guro-100-cable.jpg"
-              alt="GURO-100 케이블 연결 구성"
-              className={styles.subImage}
-              loading="lazy"
-            />
           </div>
           <div className={styles.videoBox}>
             <h3 className={styles.subTitle}>제품 영상</h3>
@@ -201,6 +188,22 @@ export default function Product() {
             <a href="#contact" className={styles.cta}>
               GURO-100 · 맞춤 개발 문의하기
             </a>
+          </div>
+        </div>
+
+        <div className={styles.caseRow}>
+          <img
+            src="/images/guro-100-cable.jpg"
+            alt="GURO-100 케이블 연결 구성"
+            className={styles.subImage}
+            loading="lazy"
+          />
+          <div className={styles.caseBox}>
+            <strong>🚏 납품 사례</strong>
+            <p>
+              실제 버스정류장 BIS(버스정보시스템) 교통카드 잔액조회기에 적용되어, 야외 현장에서 안정성을
+              검증받았습니다. 현장 요구에 맞춘 RF 커스터마이징 개발도 가능합니다.
+            </p>
           </div>
         </div>
       </div>
