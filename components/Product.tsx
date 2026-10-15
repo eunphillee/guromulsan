@@ -98,6 +98,11 @@ export default function Product() {
           GURO-100 비접촉식 스마트카드 리더기 · 교통카드 잔액조회기
         </p>
 
+        <div className={styles.titleBlock}>
+          <span className={styles.badge}>SIMPLE &amp; RELIABLE CONTACTLESS SMART CARD READER</span>
+          <h3 className={styles.productName}>GURO-100</h3>
+        </div>
+
         <div className={styles.hero}>
           <div className={styles.imageBox}>
             <img
@@ -108,8 +113,6 @@ export default function Product() {
             />
           </div>
           <div className={styles.intro}>
-            <span className={styles.badge}>SIMPLE &amp; RELIABLE CONTACTLESS SMART CARD READER</span>
-            <h3 className={styles.productName}>GURO-100</h3>
             <div className={styles.priceBox}>
               <div className={styles.priceRow}>
                 <span className={styles.price}>{PRICE.toLocaleString('ko-KR')}원</span>
