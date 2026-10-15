@@ -32,7 +32,7 @@ export default function Footer() {
             <ul className={styles.contact}>
               <li>📧 <a href="mailto:gurodnt@guromulsan.co.kr">gurodnt@guromulsan.co.kr</a></li>
               <li>📞 010-2684-4484</li>
-              <li>📍 경기도 광명시 소하로 190, B동 705호(소하동, 광명G타워)</li>
+              <li>📍 경기도 광명시 소하로 190, B동 705호<br />(소하동, 광명G타워)</li>
             </ul>
           </div>
         </div>
