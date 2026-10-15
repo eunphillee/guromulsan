@@ -19,10 +19,12 @@ export default function Footer() {
           <div className={styles.section}>
             <h4 className={styles.title}>빠른 링크</h4>
             <ul className={styles.links}>
-              <li><a href="#home">홈</a></li>
-              <li><a href="#about">회사소개</a></li>
-              <li><a href="#services">서비스</a></li>
-              <li><a href="#contact">문의하기</a></li>
+              <li><a href="/#home">홈</a></li>
+              <li><a href="/#about">회사소개</a></li>
+              <li><a href="/#services">서비스</a></li>
+              <li><a href="/#product">제품</a></li>
+              <li><a href="/#contact">문의하기</a></li>
+              <li><a href="/return-policy">배송·반품 정책</a></li>
             </ul>
           </div>
           <div className={styles.section}>

@@ -16,12 +16,12 @@ export default function Header() {
   }, [])
 
   const menuItems = [
-    { label: '홈', href: '#home' },
-    { label: '회사소개', href: '#about' },
-    { label: '서비스', href: '#services' },
-    { label: '제품', href: '#product' },
-    { label: '기술스택', href: '#technologies' },
-    { label: '문의하기', href: '#contact' },
+    { label: '홈', href: '/#home' },
+    { label: '회사소개', href: '/#about' },
+    { label: '서비스', href: '/#services' },
+    { label: '제품', href: '/#product' },
+    { label: '기술스택', href: '/#technologies' },
+    { label: '문의하기', href: '/#contact' },
   ]
 
   return (
@@ -29,7 +29,7 @@ export default function Header() {
       <div className="container">
         <nav className={styles.nav}>
           <div className={styles.logo}>
-            <a href="#home">
+            <a href="/#home">
               <img src="/images/GMlogo01.png" alt="구로물산 로고" className={styles.logoImage} />
               <span className={styles.logoText}>구로물산</span>
             </a>

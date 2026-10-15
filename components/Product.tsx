@@ -37,6 +37,12 @@ const specs = [
 
 const applications = ['버스정류장 BIS 교통카드 잔액조회기', 'POS · 무인 키오스크', '자판기 · 무인단말기', '출입 · 인증 단말']
 
+// 판매 정보 — Google 판매자 센터(Merchant Center) 등록값과 반드시 동일하게 유지
+const PRICE = 138000
+const SHIPPING_FEE: number = 0 // 0 = 무료배송
+const ORDER_TEL = '010-2684-4484'
+const ORDER_EMAIL = 'gurodnt@guromulsan.co.kr'
+
 const productJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Product',
@@ -47,6 +53,36 @@ const productJsonLd = {
   brand: { '@type': 'Brand', name: '구로물산' },
   manufacturer: { '@type': 'Organization', name: '구로물산' },
   model: 'GURO-100',
+  sku: 'GURO100',
+  mpn: 'GURO-100',
+  offers: {
+    '@type': 'Offer',
+    url: 'https://www.guromulsan.co.kr/#product',
+    priceCurrency: 'KRW',
+    price: PRICE,
+    availability: 'https://schema.org/InStock',
+    itemCondition: 'https://schema.org/NewCondition',
+    seller: { '@type': 'Organization', name: '구로물산' },
+    shippingDetails: {
+      '@type': 'OfferShippingDetails',
+      shippingRate: { '@type': 'MonetaryAmount', value: SHIPPING_FEE, currency: 'KRW' },
+      shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'KR' },
+      deliveryTime: {
+        '@type': 'ShippingDeliveryTime',
+        handlingTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 2, unitCode: 'DAY' },
+        transitTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 3, unitCode: 'DAY' },
+      },
+    },
+    hasMerchantReturnPolicy: {
+      '@type': 'MerchantReturnPolicy',
+      applicableCountry: 'KR',
+      returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+      merchantReturnDays: 7,
+      returnMethod: 'https://schema.org/ReturnByMail',
+      returnFees: 'https://schema.org/ReturnShippingFees',
+      url: 'https://www.guromulsan.co.kr/return-policy',
+    },
+  },
 }
 
 export default function Product() {
@@ -74,6 +110,29 @@ export default function Product() {
           <div className={styles.intro}>
             <span className={styles.badge}>SIMPLE &amp; RELIABLE CONTACTLESS SMART CARD READER</span>
             <h3 className={styles.productName}>GURO-100</h3>
+            <div className={styles.priceBox}>
+              <div className={styles.priceRow}>
+                <span className={styles.price}>{PRICE.toLocaleString('ko-KR')}원</span>
+                <span className={styles.priceNote}>VAT 포함</span>
+              </div>
+              <ul className={styles.saleInfo}>
+                <li>배송비: {SHIPPING_FEE === 0 ? '무료배송' : `${SHIPPING_FEE.toLocaleString('ko-KR')}원`}</li>
+                <li>배송: 평일 오후 2시 이전 주문 시 당일 처리, 영업일 기준 2~5일 소요</li>
+                <li>재고: 재고 있음 · 새 상품</li>
+              </ul>
+              <div className={styles.buyButtons}>
+                <a href={`tel:${ORDER_TEL}`} className={styles.buyPrimary}>전화 주문 {ORDER_TEL}</a>
+                <a
+                  href={`mailto:${ORDER_EMAIL}?subject=${encodeURIComponent('[구매 문의] GURO-100')}`}
+                  className={styles.buySecondary}
+                >
+                  이메일 구매 문의
+                </a>
+              </div>
+              <p className={styles.policyLink}>
+                <a href="/return-policy">배송 · 반품 · 교환 정책 보기</a>
+              </p>
+            </div>
             <p className={styles.lead}>
               GURO-100은 ARM Cortex-M4 컨트롤러와 4개의 SAM 슬롯을 탑재한 비접촉식 스마트카드(NFC/RFID)
               리더기입니다. 국내 교통카드 잔액조회를 포함한 다양한 결제·인증 환경에 맞춰 설계되었으며,

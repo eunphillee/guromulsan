@@ -199,6 +199,82 @@
   background: var(--secondary-color);
 }
 
+/* 가격 · 구매 */
+.priceBox {
+  border: 1px solid #d9e2ef;
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  background: #fff;
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.priceNote {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.saleInfo {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text-dark);
+}
+
+.buyButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.buyPrimary,
+.buySecondary {
+  flex: 1 1 180px;
+  text-align: center;
+  font-weight: 700;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.buyPrimary {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.buyPrimary:hover {
+  background: var(--secondary-color);
+}
+
+.buySecondary {
+  border: 1.5px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.policyLink {
+  margin: 0.8rem 0 0;
+  font-size: 0.9rem;
+}
+
+.policyLink a {
+  color: var(--text-light);
+  text-decoration: underline;
+}
+
 @media (max-width: 968px) {
   .hero,
   .detail {
