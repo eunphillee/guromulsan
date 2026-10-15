@@ -91,7 +91,7 @@ export default function Contact() {
               <div className={styles.infoIcon}>📍</div>
               <div>
                 <div className={styles.infoLabel}>주소</div>
-                <div className={styles.infoValue}>경기도 광명시 소하로 190, B동 705호(소하동, 광명G타워)</div>
+                <div className={styles.infoValue}>경기도 광명시 소하로 190, B동 705호<br />(소하동, 광명G타워)</div>
               </div>
             </div>
           </div>
