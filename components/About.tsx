@@ -38,8 +38,8 @@ export default function About() {
           </div>
           <div className={styles.image}>
             <img 
-              src="/images/digital01.png" 
-              alt="구로물산 회사 이미지" 
+              src="/images/about-rfid-embedded.jpg" 
+              alt="RFID · 임베디드 시스템 - 카드리더기, 교통카드, MCU 칩" 
               className={styles.companyImage}
             />
           </div>
