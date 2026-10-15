@@ -1,13 +1,12 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import styles from './Hero.module.css'
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const audioRef = useRef<HTMLAudioElement>(null)
   const heroRef = useRef<HTMLElement>(null)
-  const [isHeroVisible, setIsHeroVisible] = useState(true)
 
   useEffect(() => {
     const video = videoRef.current
@@ -34,128 +33,42 @@ export default function Hero() {
     }
   }, [])
 
-  // 배경 음악 재생 및 스크롤 감지
+  // 배경 음악: 자동 재생하지 않고, 첫 화면(Hero)을 클릭했을 때만 재생/정지
+  // - 스크롤로는 재생되지 않음
+  // - 첫 화면을 벗어나면 정지 (다시 돌아와도 자동 재생 안 함)
   useEffect(() => {
     const audio = audioRef.current
     const hero = heroRef.current
-
     if (!audio || !hero) return
 
-    // 음악 파일 로드 확인
-    const checkAudioFile = () => {
-      return new Promise<boolean>((resolve) => {
-        if (audio.readyState >= 2) {
-          resolve(true)
-          return
-        }
+    audio.volume = 0.2
 
-        const handleCanPlay = () => {
-          audio.removeEventListener('canplay', handleCanPlay)
-          audio.removeEventListener('error', handleError)
-          resolve(true)
-        }
-
-        const handleError = () => {
-          audio.removeEventListener('canplay', handleCanPlay)
-          audio.removeEventListener('error', handleError)
-          console.warn('⚠️ 음악 파일을 찾을 수 없습니다.')
-          console.log('📁 음악 파일 추가 방법:')
-          console.log('   1. https://pixabay.com/music/ 접속')
-          console.log('   2. "ambient technology" 검색')
-          console.log('   3. 다운로드 후 파일명을 background-music.mp3로 변경')
-          console.log('   4. public/audio/ 폴더에 저장')
-          resolve(false)
-        }
-
-        audio.addEventListener('canplay', handleCanPlay)
-        audio.addEventListener('error', handleError)
-
-        // 2초 후 타임아웃
-        setTimeout(() => {
-          audio.removeEventListener('canplay', handleCanPlay)
-          audio.removeEventListener('error', handleError)
-          if (audio.readyState < 2) {
-            console.warn('⚠️ 음악 파일 로드 타임아웃')
-            console.log('📁 public/audio/background-music.mp3 파일을 추가해주세요.')
-            resolve(false)
-          } else {
-            resolve(true)
-          }
-        }, 2000)
-      })
-    }
-
-    const playAudio = async () => {
-      try {
-        const fileExists = await checkAudioFile()
-        if (!fileExists) {
-          return
-        }
-
-        audio.volume = 0.2 // 음량 조절 (20%)
-        await audio.play()
-        console.log('배경 음악 재생 시작')
-      } catch (error) {
-        // 브라우저 자동 재생 정책으로 인한 실패
-        console.log('배경 음악 재생 대기 중 (사용자 상호작용 필요)')
-        
-        // 사용자 상호작용 후 재시도
-        const handleFirstInteraction = async () => {
-          const fileExists = await checkAudioFile()
-          if (fileExists && audio.paused) {
-            try {
-              await audio.play()
-              console.log('배경 음악 재생 시작 (사용자 상호작용 후)')
-            } catch (e) {
-              console.log('배경 음악 재생 실패')
-            }
-          }
-          document.removeEventListener('click', handleFirstInteraction)
-          document.removeEventListener('scroll', handleFirstInteraction)
-          document.removeEventListener('touchstart', handleFirstInteraction)
-        }
-        
-        document.addEventListener('click', handleFirstInteraction, { once: true })
-        document.addEventListener('scroll', handleFirstInteraction, { once: true })
-        document.addEventListener('touchstart', handleFirstInteraction, { once: true })
-      }
-    }
-
-    // 스크롤 감지하여 Hero 섹션을 벗어나면 음악 멈춤
-    const handleScroll = () => {
-      if (!hero) return
-
-      const heroRect = hero.getBoundingClientRect()
-      const heroBottom = heroRect.bottom
-      const isVisible = heroBottom > 0
-      
-      // Hero 섹션이 화면에서 벗어나면 음악 멈춤
-      if (!isVisible && !audio.paused) {
+    const handleHeroClick = (e: MouseEvent) => {
+      // 문의하기·서비스 보기 등 링크/버튼 클릭은 음악 제어에서 제외
+      if ((e.target as HTMLElement).closest('a, button')) return
+      if (audio.paused) {
+        audio.play().catch(() => {})
+      } else {
         audio.pause()
-        setIsHeroVisible(false)
-        console.log('배경 음악 정지')
-      } 
-      // Hero 섹션이 다시 보이면 음악 재생
-      else if (isVisible && audio.paused && !isHeroVisible) {
-        setIsHeroVisible(true)
-        playAudio()
       }
     }
 
-    // 초기 재생 시도
-    playAudio()
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting && !audio.paused) audio.pause()
+      },
+      { threshold: 0 }
+    )
 
-    // 스크롤 이벤트 리스너
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    hero.addEventListener('click', handleHeroClick)
+    observer.observe(hero)
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-      if (audio) {
-        audio.pause()
-        audio.currentTime = 0
-      }
+      hero.removeEventListener('click', handleHeroClick)
+      observer.disconnect()
+      audio.pause()
     }
-  }, [isHeroVisible])
+  }, [])
 
   return (
     <section id="home" ref={heroRef} className={styles.hero}>
@@ -163,7 +76,7 @@ export default function Hero() {
       <audio
         ref={audioRef}
         loop
-        preload="auto"
+        preload="none"
         style={{ display: 'none' }}
       >
         <source src="/audio/background-music.mp3" type="audio/mpeg" />
